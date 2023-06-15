@@ -1,4 +1,10 @@
-function PlayerPage(): JSX.Element {
+import { FilmType } from '../../types/films';
+
+type PlayerProps = {
+  films: FilmType[];
+}
+
+function PlayerPage({films}: PlayerProps): JSX.Element {
   return (
     <div className="PlayerPage">
       <video src="#" className="PlayerPage__video" poster="img/PlayerPage-poster.jpg"></video>

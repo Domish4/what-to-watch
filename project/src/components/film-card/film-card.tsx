@@ -1,12 +1,40 @@
-function FilmCard(): JSX.Element {
+import { Link } from 'react-router-dom';
+import { FilmType } from '../../types/films';
+import {useState} from 'react';
+import VideoPlayer from '../video-player/video-player';
+
+type FilmCardProps = {
+  film: FilmType;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}
+
+function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Element {
+
+  const [isActive, setIsActive] = useState(false);
+
+  const mouseOverHandler = () => {
+    onMouseEnter();
+    setIsActive(true);
+  };
+
+  const mouseOutHandler = () => {
+    onMouseLeave();
+    setIsActive(false);
+  };
+
+  const {name, id, posterImage} = film;
   return (
-    <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-      </div>
-      <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-      </h3>
+    <article className="small-film-card catalog__films-card" onMouseEnter={mouseOverHandler} onMouseLeave={mouseOutHandler} >
+      <Link to={`/films/${id}`} style={{ color: 'inherit' }} >
+        { isActive ? <VideoPlayer film={film}/> :
+          <div className="small-film-card__image">
+            <img src={posterImage} alt={name} width="280" height="175" />
+          </div>}
+        <h3 className="small-film-card__title">
+          <text className="small-film-card__link">{name}</text>
+        </h3>
+      </Link>
     </article>
   );
 }

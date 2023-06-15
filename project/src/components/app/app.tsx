@@ -7,27 +7,29 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-routes/private-routes';
+import { FilmType } from '../../types/films';
 
 type AppProps = {
   genres: string;
   filmDates: string;
+  films: FilmType[];
 
 }
-function App({genres, filmDates}: AppProps): JSX.Element {
+function App({genres, filmDates, films}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainPage genres={genres} filmDates={filmDates} />} />
+        <Route path='/' element={<MainPage genres={genres} filmDates={filmDates} films={films} />} />
         <Route path='/login' element={<SignInPage />} />
         <Route path='/mylist' element={
           <PrivateRoute>
-            <MyListPage />
+            <MyListPage films={films} />
           </PrivateRoute>
         }
         />
         <Route path='/films/:id' element={<MoviePage />} />
-        <Route path='/films/:id/review' element={<AddReviewPage />} />
-        <Route path='/player/:id' element={<PlayerPage />} />
+        <Route path='/films/:id/review' element={<AddReviewPage films={films} />} />
+        <Route path='/player/:id' element={<PlayerPage films={films} />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
