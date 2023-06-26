@@ -2,12 +2,11 @@ import FilmsList from '../../components/films-list/films-list';
 import { FilmType } from '../../types/films';
 
 type MainPageProps = {
-  genres: string;
-  filmDates: string;
+
   films: FilmType[];
 }
 
-function MainPage({genres, filmDates, films}: MainPageProps): JSX.Element {
+function MainPage({films}: MainPageProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -47,8 +46,8 @@ function MainPage({genres, filmDates, films}: MainPageProps): JSX.Element {
             <div className="film-card__desc">
               <h2 className="film-card__title">The Grand Budapest Hotel</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genres}</span>
-                <span className="film-card__year">{filmDates}</span>
+                <span className="film-card__genre">need time</span>
+                <span className="film-card__year">01.01.2021</span>
               </p>
 
               <div className="film-card__buttons">

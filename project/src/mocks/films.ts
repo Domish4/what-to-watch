@@ -1,4 +1,5 @@
 import { FilmType } from '../types/films';
+import { ReviewType } from '../types/review';
 
 export const films: FilmType[] = [
   {
@@ -169,4 +170,27 @@ export const films: FilmType[] = [
     'released': 2014,
     'isFavorite': false
   }
+];
+
+export const reviewsList: ReviewType[] = [
+  {
+    'comment': 'hi',
+    'date': '02.02.2222',
+    'id': 1,
+    'rating': 5,
+    'user': {
+      'id': 1,
+      'name': 'masha',
+    },
+  },
+  {
+    'comment': 'hfghgfhgfhgfhgfi',
+    'date': '02.02.2222',
+    'id': 2,
+    'rating': 5,
+    'user': {
+      'id': 2,
+      'name': 'sanya',
+    },
+  },
 ];

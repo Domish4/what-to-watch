@@ -1,3 +1,4 @@
+
 export type FilmType = {
 id: number;
 name: string;
@@ -17,3 +18,4 @@ genre: string;
 released: number;
 isFavorite: boolean;
 }
+

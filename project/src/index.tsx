@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { films } from './mocks/films';
+import { films, reviewsList } from './mocks/films';
 
-const Setting = {
-  genres: 'Horror',
-  filmDates: '01.01.2021'
-} as const;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -15,9 +11,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      genres = {Setting.genres}
-      filmDates={Setting.filmDates}
       films={films}
+      reviewsList={reviewsList}
     />
   </React.StrictMode>,
 );

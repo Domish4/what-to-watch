@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FilmType } from '../../types/films';
 import {useState} from 'react';
 import VideoPlayer from '../video-player/video-player';
@@ -26,7 +26,7 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
   const {name, id, posterImage} = film;
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={mouseOverHandler} onMouseLeave={mouseOutHandler} >
-      <Link to={`/films/${id}`} style={{ color: 'inherit' }} >
+      <NavLink to={`/films/${id}`} style={{ color: 'inherit' }} >
         { isActive ? <VideoPlayer film={film}/> :
           <div className="small-film-card__image">
             <img src={posterImage} alt={name} width="280" height="175" />
@@ -34,7 +34,7 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
         <h3 className="small-film-card__title">
           <text className="small-film-card__link">{name}</text>
         </h3>
-      </Link>
+      </NavLink>
     </article>
   );
 }
