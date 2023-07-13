@@ -19,7 +19,7 @@ export const films: FilmType[] = [
       'Bill Murray'
     ],
     'runTime': 99,
-    'genre': 'Comedy',
+    'genre': 'Comedies',
     'released': 2014,
     'isFavorite': false
   },
@@ -61,7 +61,7 @@ export const films: FilmType[] = [
       'Bill Murray'
     ],
     'runTime': 99,
-    'genre': 'Comedy',
+    'genre': 'Comedies',
     'released': 2022,
     'isFavorite': false
   },
