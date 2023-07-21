@@ -33,7 +33,7 @@ function MyListPage({films}: MyListProps): JSX.Element {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmsList filteredFilms={films} />
+        <FilmsList filteredFilms={films} quantity={films.length} />
       </section>
 
       <footer className="page-footer">

@@ -32,7 +32,7 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
             <img src={posterImage} alt={name} width="280" height="175" />
           </div>}
         <h3 className="small-film-card__title">
-          <text className="small-film-card__link">{name}</text>
+          <p className="small-film-card__link">{name}</p>
         </h3>
       </NavLink>
     </article>

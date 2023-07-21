@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { changeGenres, getAllFilms } from './action';
+import { changeGenres, getAllFilms} from './action';
 import { FilmType } from '../types/films';
 import { films } from '../mocks/films';
 
@@ -23,6 +23,5 @@ const reducer = createReducer(initialState, (builder) => {
     state.films = action.payload;
   });
 });
-
 
 export default reducer;

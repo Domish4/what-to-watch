@@ -14,3 +14,4 @@ export const GENRES_LIST = [
   'Thrillers'
 ];
 
+export const MAX_FILMS_COUNT = 8;

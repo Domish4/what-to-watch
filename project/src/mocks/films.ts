@@ -169,6 +169,216 @@ export const films: FilmType[] = [
     'genre': 'Crime',
     'released': 2014,
     'isFavorite': false
+  },
+  {
+    'id': 9,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 10,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 11,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 12,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 13,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 14,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 15,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 16,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 17,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
+  },
+  {
+    'id': 18,
+    'name': 'THE LAST',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/the-grand-budapest-hotel-bg.jpg',
+    'backgroundColor': '#ffffff',
+    'videoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'previewVideoLink': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    'description': 'the last id. what it would be? see it now but be ready',
+    'rating': 8.9,
+    'scoresCount': 240,
+    'director': 'mail scarry',
+    'starring': [
+      'Bill Murray'
+    ],
+    'runTime': 99,
+    'genre': 'Crime',
+    'released': 2014,
+    'isFavorite': false
   }
 ];
 

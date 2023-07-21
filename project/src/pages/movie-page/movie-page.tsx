@@ -98,7 +98,7 @@ function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList filteredFilms={relatedFilms} />
+          <FilmsList filteredFilms={relatedFilms} quantity={films.length} />
         </section>
         <Footer />
       </div>
