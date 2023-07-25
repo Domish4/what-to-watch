@@ -14,6 +14,7 @@ type MoviePageProps = {
 }
 
 function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element {
+
   const { id } = useParams();
   const film = films.find((movie) => `${movie.id}` === id);
   if (!film || !id) {

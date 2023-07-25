@@ -15,3 +15,21 @@ export const GENRES_LIST = [
 ];
 
 export const MAX_FILMS_COUNT = 8;
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export enum APIRoute {
+    Films = '/films',
+    Login = '/login',
+    Logout = '/logout',
+    Comments = '/comments',
+    Favorite = '/favorite',
+    Promo = '/promo'
+
+}
+
+export const TIMEOUT_SHOW_ERROR = 5000;

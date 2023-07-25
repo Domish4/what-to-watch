@@ -7,22 +7,31 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-routes/private-routes';
-import { FilmType } from '../../types/films';
-import { ReviewType } from '../../types/review';
+import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../const';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
-type AppProps = {
-  films: FilmType[];
-  reviewsList: ReviewType[];
-}
-function App({films, reviewsList}: AppProps): JSX.Element {
+
+function App(): JSX.Element {
+  const reviewsList = useAppSelector((state) => state.reviews);
+  const films = useAppSelector((state) => state.films);
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<SignInPage />} />
         <Route path='/mylist' element={
-          <PrivateRoute>
-            <MyListPage films={films} />
+          <PrivateRoute >
+            <MyListPage />
           </PrivateRoute>
         }
         />

@@ -1,11 +1,8 @@
 import FilmsList from '../../components/films-list/films-list';
-import { FilmType } from '../../types/films';
+import { useAppSelector } from '../../hooks';
 
-type MyListProps = {
-  films: FilmType[];
-}
-
-function MyListPage({films}: MyListProps): JSX.Element {
+function MyListPage(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
 
   return (
     <div className="user-page">
