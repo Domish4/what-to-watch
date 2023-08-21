@@ -22,7 +22,7 @@ function FilmsList({filteredFilms, quantity}: FilmsProps): JSX.Element {
   } else {
     return (
       <div className="catalog__films-list">
-        {filteredFilms.slice(0, quantity).map((film) => (<FilmCard onMouseEnter={() => setActiveCard(film.id)} onMouseLeave={()=> setActiveCard(0)} key={film.id} film={film}/>))}
+        {filteredFilms.map((film) => (<FilmCard onMouseEnter={() => setActiveCard(film.id)} onMouseLeave={()=> setActiveCard(0)} key={film.id} film={film}/>))}
       </div>
     );
   }

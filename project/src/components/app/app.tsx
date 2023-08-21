@@ -13,7 +13,6 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 
 function App(): JSX.Element {
-  const reviewsList = useAppSelector((state) => state.reviews);
   const films = useAppSelector((state) => state.films);
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -30,15 +29,15 @@ function App(): JSX.Element {
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<SignInPage />} />
         <Route path='/mylist' element={
-          <PrivateRoute >
+          <PrivateRoute authorizationStatus={authorizationStatus}>
             <MyListPage />
           </PrivateRoute>
         }
         />
         <Route path='/films/:id' element={<Navigate to='overview' />} />;
-        <Route path='/films/:id/overview' element={<MoviePage activeTab='Overview' reviewsList={reviewsList} films={films}/>} />
-        <Route path='/films/:id/details' element={<MoviePage activeTab='Details' reviewsList={reviewsList} films={films}/>} />
-        <Route path='/films/:id/reviews' element={<MoviePage activeTab='Reviews' reviewsList={reviewsList} films={films}/>} />
+        <Route path='/films/:id/overview' element={<MoviePage activeTab='Overview' />} />
+        <Route path='/films/:id/details' element={<MoviePage activeTab='Details' />} />
+        <Route path='/films/:id/reviews' element={<MoviePage activeTab='Reviews' />} />
 
 
         <Route path='/films/:id/review' element={<AddReviewPage films={films} />} />

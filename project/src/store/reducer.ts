@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { requireAuthorization, changeGenres, loadFilms, setError, loadReviews, setDataLoadingStatus} from './action';
+import { requireAuthorization, changeGenres, loadFilms, setError, loadReviews, setDataLoadingStatus, getFilm, getPromoFilm, getSimularFilms, getFavoriteFilms, postComments} from './action';
 import { FilmType } from '../types/films';
 import { AuthorizationStatus } from '../const';
 import { ReviewType } from '../types/review';
@@ -12,6 +12,11 @@ type InitialState = {
   error: string | null;
   reviews: ReviewType[];
   isDataLoading: boolean;
+  film: FilmType | null;
+  promoFilm: FilmType | null;
+  simularFilms: FilmType[];
+  favoriteFilm: FilmType[];
+  postComments: ReviewType | null;
 }
 
 const initialState: InitialState = {
@@ -21,7 +26,13 @@ const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   reviews: [],
-  isDataLoading: false
+  isDataLoading: false,
+  film: null,
+  promoFilm: null,
+  simularFilms: [],
+  favoriteFilm: [],
+  postComments: null
+
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -42,6 +53,21 @@ const reducer = createReducer(initialState, (builder) => {
   });
   builder.addCase(setDataLoadingStatus, (state, action) => {
     state.isDataLoading = action.payload;
+  });
+  builder.addCase(getFilm, (state, action) => {
+    state.film = action.payload;
+  });
+  builder.addCase(getPromoFilm, (state, action) => {
+    state.promoFilm = action.payload;
+  });
+  builder.addCase(getSimularFilms, (state, action) => {
+    state.simularFilms = action.payload;
+  });
+  builder.addCase(getFavoriteFilms, (state, action) => {
+    state.favoriteFilm = action.payload;
+  });
+  builder.addCase(postComments, (state, action) => {
+    state.postComments = action.payload;
   });
 });
 

@@ -1,57 +1,56 @@
-import { Link, useParams } from 'react-router-dom';
-import { FilmType } from '../../types/films';
+import { NavLink, useParams } from 'react-router-dom';
 import TabsNavigation from '../../components/tabs/tabs-navigation';
 import MovieTabs from '../../components/tabs/movie-tabs';
 import ErrorPage from '../error-page/error-page';
-import { tabNames } from '../../const';
-import { ReviewType } from '../../types/review';
+import { AuthorizationStatus, MAX_RELATED_FILMS, tabNames } from '../../const';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
+import {useAppSelector } from '../../hooks';
+import { fetchCommentsAction, fetchFilmAction, fetchSimularFilms} from '../../store/api-actions';
+import { useEffect } from 'react';
+import { store } from '../../store';
+import Header from '../../components/header/header';
+
 type MoviePageProps = {
-  films: FilmType[];
   activeTab: typeof tabNames[number];
-  reviewsList: ReviewType[];
 }
 
-function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element {
+function MoviePage({activeTab}: MoviePageProps): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+  const reviewsList = useAppSelector((state) => state.reviews);
+  const currentGenre = useAppSelector((state) => state.genres);
+  const filteredFilms = films.filter((film) => film.genre === currentGenre);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const params = useParams();
 
-  const { id } = useParams();
-  const film = films.find((movie) => `${movie.id}` === id);
-  if (!film || !id) {
+  useEffect(() => {
+
+    if (params.id) {
+      store.dispatch(fetchFilmAction({id: params.id}));
+      store.dispatch(fetchCommentsAction({id: params.id}));
+      store.dispatch(fetchSimularFilms({id: params.id}));
+    }
+  }, [params.id]);
+
+  const film = films.find((movie) => `${movie.id}` === params.id);
+  if (!film || !params.id) {
     return <ErrorPage />;
   }
 
-  const relatedFilms = films.filter((item) => item.genre === film.genre);
+  const relatedFilms = filteredFilms.filter((item) => item.genre === film.genre);
+
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={film.previewImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-            <div className="logo">
-              <Link to='/' className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
-              </li>
-            </ul>
-          </header>
+          <Header />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -75,7 +74,9 @@ function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                {authorizationStatus === AuthorizationStatus.Auth ?
+                  <NavLink to={`/films/${params.id}/review`} className="btn film-card__button">Add review</NavLink>
+                  : '' }
               </div>
             </div>
           </div>
@@ -84,11 +85,11 @@ function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <TabsNavigation id={id} activeTab={activeTab} />
+              <TabsNavigation id={params.id} activeTab={activeTab} />
               <MovieTabs activeTab={activeTab} film={film} reviewsList={reviewsList}/>
 
             </div>
@@ -99,7 +100,7 @@ function MoviePage({films, activeTab, reviewsList}: MoviePageProps): JSX.Element
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList filteredFilms={relatedFilms} quantity={films.length} />
+          <FilmsList filteredFilms={relatedFilms} quantity={MAX_RELATED_FILMS} />
         </section>
         <Footer />
       </div>

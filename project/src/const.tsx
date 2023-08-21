@@ -3,18 +3,19 @@ export const tabNames = ['Overview', 'Details', 'Reviews'] as const;
 
 export const GENRES_LIST = [
   'All genres',
-  'Comedies',
+  'Comedy',
   'Crime',
   'Documentary',
-  'Dramas',
+  'Drama',
   'Horror',
   'Kids & Family',
   'Romance',
   'Sci-Fi',
-  'Thrillers'
+  'Thriller'
 ];
 
 export const MAX_FILMS_COUNT = 8;
+export const MAX_RELATED_FILMS = 4;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

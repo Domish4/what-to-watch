@@ -5,6 +5,7 @@ type reviewListProps = {
 }
 
 function reviewList({reviewsList}: reviewListProps): JSX.Element {
+
   if (reviewsList.length === 0) {
     return (
       <div className="film-card__reviews film-card__row">
