@@ -3,17 +3,22 @@ import FilmsList from '../../components/films-list/films-list';
 import GenresList from '../../components/genres-list/genres-list';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { useAppSelector } from '../../hooks';
-import { MAX_FILMS_COUNT } from '../../const';
+import { APIRoute, MAX_FILMS_COUNT } from '../../const';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import { Link } from 'react-router-dom';
+import ErrorPage from '../error-page/error-page';
 
 
 function MainPage(): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const currentGenre = useAppSelector((state) => state.genres);
-  const filteredFilms = films.filter((film) => film.genre === currentGenre);
+  const filteredFilms = films.filter((item) => item.genre === currentGenre);
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(MAX_FILMS_COUNT);
   const promoFilm = useAppSelector((state) => state.promoFilm);
+  if (promoFilm === null) {
+    return <ErrorPage/>;
+  }
 
   return (
     <>
@@ -40,12 +45,14 @@ function MainPage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <Link to={`${APIRoute.Films}/player/${promoFilm.id}`}>
+                  <button className="btn btn--play film-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>

@@ -43,7 +43,7 @@ function App(): JSX.Element {
 
 
         <Route path='/films/:id/review' element={<AddReviewPage films={films} />} />
-        <Route path='/player/:id' element={<PlayerPage films={films} />} />
+        <Route path='/films/player/:id' element={<PlayerPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     </HistoryRouter>

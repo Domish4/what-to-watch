@@ -1,13 +1,12 @@
-import { FilmType } from '../../types/films';
+import { useAppSelector } from '../../hooks';
 
-type PlayerProps = {
-  films: FilmType[];
-}
 
-function PlayerPage({films}: PlayerProps): JSX.Element {
+function PlayerPage(): JSX.Element {
+  const film = useAppSelector((state) => state.film);
+
   return (
     <div className="PlayerPage">
-      <video src="#" className="PlayerPage__video" poster="img/PlayerPage-poster.jpg"></video>
+      <video src={film?.videoLink} className="PlayerPage__video" poster={film?.posterImage}></video>
 
       <button type="button" className="PlayerPage__exit">Exit</button>
 

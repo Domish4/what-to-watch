@@ -1,8 +1,8 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import TabsNavigation from '../../components/tabs/tabs-navigation';
 import MovieTabs from '../../components/tabs/movie-tabs';
 import ErrorPage from '../error-page/error-page';
-import { AuthorizationStatus, MAX_RELATED_FILMS, tabNames } from '../../const';
+import { APIRoute, AuthorizationStatus, MAX_RELATED_FILMS, tabNames } from '../../const';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 import {useAppSelector } from '../../hooks';
@@ -60,12 +60,14 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <Link to={`${APIRoute.Films}/player/${film.id}`}>
+                  <button className="btn btn--play film-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
