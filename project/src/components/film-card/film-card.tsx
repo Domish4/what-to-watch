@@ -23,13 +23,13 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
     setIsActive(false);
   };
 
-  const {name, id, previewImage} = film;
+  const {name, id, backgroundImage} = film;
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={mouseOverHandler} onMouseLeave={mouseOutHandler} >
       <NavLink to={`/films/${id}`} style={{ color: 'inherit' }} >
         { isActive ? <VideoPlayer film={film}/> :
           <div className="small-film-card__image">
-            <img src={previewImage} alt={name} width="280" height="175" />
+            <img src={backgroundImage} alt={name} width="280" height="175" />
           </div>}
         <h3 className="small-film-card__title">
           <p className="small-film-card__link">{name}</p>

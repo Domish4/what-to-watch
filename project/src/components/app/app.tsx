@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import {Navigate, Route, Routes } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
@@ -10,6 +10,8 @@ import PrivateRoute from '../private-routes/private-routes';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 
 function App(): JSX.Element {
@@ -24,7 +26,7 @@ function App(): JSX.Element {
     );
   }
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<SignInPage />} />
@@ -44,7 +46,7 @@ function App(): JSX.Element {
         <Route path='/player/:id' element={<PlayerPage films={films} />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

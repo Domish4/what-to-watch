@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import {AxiosInstance } from 'axios';
 import { FilmType } from '../types/films';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { getFavoriteFilms, getFilm, getPromoFilm, getSimularFilms, loadFilms, loadReviews, postComments, requireAuthorization, setDataLoadingStatus, setError } from './action';
+import { getFavoriteFilms, getFilm, getPromoFilm, getSimularFilms, loadFilms, loadReviews, postComments, redirectToRoute, requireAuthorization, setDataLoadingStatus, setError } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -132,6 +132,7 @@ export const postComment = createAsyncThunk<ReviewType, {id: string; comment: st
   async ({id, rating, comment}, {dispatch, extra: api}) => {
     const {data} = await api.post<ReviewType>(`${APIRoute.Comments}/${id}`, {comment, rating});
     dispatch(postComments(data));
+    dispatch(redirectToRoute(`${APIRoute.Films}/${id}/reviews`));
     return data;
 
   }

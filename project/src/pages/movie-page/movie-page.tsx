@@ -18,9 +18,8 @@ type MoviePageProps = {
 function MoviePage({activeTab}: MoviePageProps): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const reviewsList = useAppSelector((state) => state.reviews);
-  const currentGenre = useAppSelector((state) => state.genres);
-  const filteredFilms = films.filter((film) => film.genre === currentGenre);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const simularFilms = useAppSelector((state) => state.simularFilms);
   const params = useParams();
 
   useEffect(() => {
@@ -37,7 +36,7 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
     return <ErrorPage />;
   }
 
-  const relatedFilms = filteredFilms.filter((item) => item.genre === film.genre);
+  const relatedFilms = simularFilms.filter((item) => item.genre === film.genre);
 
 
   return (
@@ -45,7 +44,7 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.previewImage} alt={film.name} />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>

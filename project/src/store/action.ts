@@ -15,8 +15,10 @@ export const Action = {
   GETPROMOFILM: 'GET_PROMO_FILM',
   GETSIMULARFILMS: 'GET_SIMULAR_FILMS',
   GETFAVORITEFILM: 'GET_FAVORITE_FILM',
-  POSTCOMMENTS: 'POST_COMMENTS'
+  POSTCOMMENTS: 'POST_COMMENTS',
+  REDIRECT: 'REDIRECT',
 };
+
 
 export const changeGenres = createAction<string>(Action.CHANGEGENRES);
 
@@ -41,3 +43,5 @@ export const getSimularFilms = createAction<FilmType[]>(Action.GETSIMULARFILMS);
 export const getFavoriteFilms = createAction<FilmType[]>(Action.GETFAVORITEFILM);
 
 export const postComments = createAction<ReviewType>(Action.POSTCOMMENTS);
+
+export const redirectToRoute = createAction<string>(Action.REDIRECT);
