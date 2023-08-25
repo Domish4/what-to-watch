@@ -1,8 +1,8 @@
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TabsNavigation from '../../components/tabs/tabs-navigation';
 import MovieTabs from '../../components/tabs/movie-tabs';
 import ErrorPage from '../error-page/error-page';
-import { APIRoute, AuthorizationStatus, MAX_RELATED_FILMS, tabNames } from '../../const';
+import { MAX_RELATED_FILMS, tabNames } from '../../const';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 import {useAppSelector } from '../../hooks';
@@ -10,6 +10,7 @@ import { fetchCommentsAction, fetchFilmAction, fetchSimularFilms} from '../../st
 import { useEffect } from 'react';
 import { store } from '../../store';
 import Header from '../../components/header/header';
+import FilmCardButtons from '../../components/film-card-buttons/film-card-buttons';
 
 type MoviePageProps = {
   activeTab: typeof tabNames[number];
@@ -18,7 +19,6 @@ type MoviePageProps = {
 function MoviePage({activeTab}: MoviePageProps): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const reviewsList = useAppSelector((state) => state.reviews);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const simularFilms = useAppSelector((state) => state.simularFilms);
   const params = useParams();
 
@@ -38,13 +38,14 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
 
   const relatedFilms = simularFilms.filter((item) => item.genre === film.genre);
 
+  const {backgroundImage, name, genre, released, isFavorite, posterImage} = film;
 
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundImage} alt={film.name} />
+            <img src={backgroundImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -53,32 +54,12 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.name}</h2>
+              <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.released}</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{released}</span>
               </p>
-
-              <div className="film-card__buttons">
-                <Link to={`${APIRoute.Films}/player/${film.id}`}>
-                  <button className="btn btn--play film-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                </Link>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
-                {authorizationStatus === AuthorizationStatus.Auth ?
-                  <NavLink to={`/films/${params.id}/review`} className="btn film-card__button">Add review</NavLink>
-                  : '' }
-              </div>
+              <FilmCardButtons promoFilm={film} isFavorite={isFavorite} />
             </div>
           </div>
         </div>
@@ -86,7 +67,7 @@ function MoviePage({activeTab}: MoviePageProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterImage} alt={film.name} width="218" height="327" />
+              <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

@@ -1,36 +1,109 @@
-import { useAppSelector } from '../../hooks';
+import { useRef, useState} from 'react';
+import {useNavigate, } from 'react-router-dom';
+import formatTime, {PlayerButtons} from '../../const';
+import {useAppSelector} from '../../hooks';
 
 
-function PlayerPage(): JSX.Element {
+const Player = ():JSX.Element => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const progressRef = useRef<HTMLProgressElement | null>(null);
+  const togglerRef = useRef<HTMLDivElement | null>(null);
+  const [currentButton, setCurrentButton] = useState(PlayerButtons.Pause);
   const film = useAppSelector((state) => state.film);
+  const [timeCount, setTimeCount] = useState(0);
+  const navigate = useNavigate();
+
+
+  const handlePlayAndPauseButtonClick = () => {
+    if (!videoRef.current) {
+      return;
+    }
+    if (currentButton === PlayerButtons.Pause) {
+      videoRef.current?.pause();
+      setCurrentButton(PlayerButtons.Play);
+    } else if (currentButton === PlayerButtons.Play) {
+      videoRef.current?.play();
+      setCurrentButton(PlayerButtons.Pause);
+    }
+  };
+
+  const handleFullScreenButton = () => {
+    if (!videoRef.current) {
+      return;
+    }
+
+    videoRef.current?.requestFullscreen();
+  };
+
+  const handleCloseButton = () => navigate('/');
+
+  const handleTimeUpdate = () => {
+    if (!videoRef.current || !togglerRef.current || !progressRef.current) {
+      return;
+    }
+
+    const leftTime = Math.round(videoRef.current.duration - videoRef.current.currentTime);
+    const leftTimeInPercents = 100 - Math.trunc((leftTime / videoRef.current.duration) * 100);
+    progressRef.current.value = leftTimeInPercents;
+    togglerRef.current.style.left = `${leftTimeInPercents}%`;
+
+    if (!timeCount || leftTime < timeCount) {
+      setTimeCount(leftTime);
+    }
+  };
+
 
   return (
-    <div className="PlayerPage">
-      <video src={film?.videoLink} className="PlayerPage__video" poster={film?.posterImage}></video>
+    <div className="player">
+      <video
+        src={film?.videoLink}
+        className="player__video"
+        ref={videoRef}
+        autoPlay
+        onTimeUpdate={handleTimeUpdate}
+        poster={film?.backgroundImage}
+      >
+      </video>
 
-      <button type="button" className="PlayerPage__exit">Exit</button>
+      <button type="button"
+        onClick={handleCloseButton}
+        className="player__exit"
+      >Exit
+      </button>
 
-      <div className="PlayerPage__controls">
-        <div className="PlayerPage__controls-row">
-          <div className="PlayerPage__time">
-            <progress className="PlayerPage__progress" value="30" max="100"></progress>
-            <div className="PlayerPage__toggler" style={{left: '30%'}}>Toggler</div>
+      <div className="player__controls">
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress ref={progressRef} className="player__progress" value="0" max="100"></progress>
+            <div ref={togglerRef}
+              draggable="true"
+              className="player__toggler"
+              style={{left: '0%'}}
+            >
+              Toggler
+            </div>
           </div>
-          <div className="PlayerPage__time-value">1:30:29</div>
+          <div className="player__time-value">{formatTime(timeCount)}</div>
         </div>
 
-        <div className="PlayerPage__controls-row">
-          <button type="button" className="PlayerPage__play">
+        <div className="player__controls-row">
+          <button type="button"
+            onClick={handlePlayAndPauseButtonClick}
+            className="player__play"
+          >
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              <use xlinkHref={currentButton}></use>
             </svg>
             <span>Play</span>
           </button>
-          <div className="PlayerPage__name">Transpotting</div>
+          <div className="player__name">{film?.name}</div>
 
-          <button type="button" className="PlayerPage__full-screen">
+          <button type="button"
+            onClick={handleFullScreenButton}
+            className="player__full-screen"
+          >
             <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
+              <use xlinkHref={PlayerButtons.FullScreen}></use>
             </svg>
             <span>Full screen</span>
           </button>
@@ -38,5 +111,6 @@ function PlayerPage(): JSX.Element {
       </div>
     </div>
   );
-}
-export default PlayerPage;
+};
+
+export default Player;

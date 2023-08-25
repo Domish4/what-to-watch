@@ -15,7 +15,7 @@ type InitialState = {
   film: FilmType | null;
   promoFilm: FilmType | null;
   simularFilms: FilmType[];
-  favoriteFilm: FilmType[];
+  favoriteFilms: FilmType[];
   postComments: ReviewType | null;
 }
 
@@ -30,7 +30,7 @@ const initialState: InitialState = {
   film: null,
   promoFilm: null,
   simularFilms: [],
-  favoriteFilm: [],
+  favoriteFilms: [],
   postComments: null
 
 };
@@ -64,7 +64,7 @@ const reducer = createReducer(initialState, (builder) => {
     state.simularFilms = action.payload;
   });
   builder.addCase(getFavoriteFilms, (state, action) => {
-    state.favoriteFilm = action.payload;
+    state.favoriteFilms = action.payload;
   });
   builder.addCase(postComments, (state, action) => {
     state.postComments = action.payload;
